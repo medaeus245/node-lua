@@ -20,12 +20,14 @@ Using Lua5.1 C interface: https://www.lua.org/manual/5.1/manual.html with luajit
 - Low-Level API
 - For now Sync only
 
+
 **Compilation:**
 - On Windows and Mac : Luajit library already included in the package
 - On Linux: Compilation with following parameters:
 ...Include directory: (find /usr/include /usr/local/include $NODELUA_INCLUDE -name lua.h | sed s/lua.h//)..
 ...Library directory: "/usr/local/lib"..
 ...Library: "/usr/local/lib/libluajit-5.1.so"..
+
 
 **Tested on:**
  - Windows (Node v6.10.2)
@@ -34,6 +36,9 @@ Using Lua5.1 C interface: https://www.lua.org/manual/5.1/manual.html with luajit
 ## Examples
 
 - [Simple](https://github.com/Medaeus245/node-lua/blob/master/examples/simple/index.js)
+- [Lua require](https://github.com/Medaeus245/node-lua/blob/master/examples/lua_require/index.js)
+
+
 
 ## API
 
@@ -44,11 +49,13 @@ const nodelua = require('node-lua');
 
 var lua = new nodelua.LuaState();
 
+
 /**
- * [Add a path to the lua package.path variable. Set a root path to require a lua file from lua (see example)]
+ * [Add a path to the lua package.path variable. Set a root path for lua require (see example)]
  * @param  {String} path
  */
 lua.AddPackagePath(__dirname);
+
 
 /**
  * [Loads and runs the given file]
@@ -57,12 +64,14 @@ lua.AddPackagePath(__dirname);
  */
 lua.DoFile(__dirname + "/test.lua");
 
+
 /**
  * [Loads and runs the given string]
  * @type {String} str
  * @throws {Exception}
  */
 lua.DoString("print('Hello world!')");
+
 
 /**
  * [Sets the function f as the new value of global name]
@@ -77,11 +86,13 @@ lua.RegisterFunction('add', function() {
 	return 1;
 });
 
+
 /**
  * [Pops a value from the stack and sets it as the new value of global name]
  * @type {String} name
  */
 lua.SetGlobal("myVar");
+
 
 /**
  * [Pushes onto the stack the value of the global name]
@@ -97,6 +108,7 @@ lua.GetGlobal('myVar');
  */
 lua.SetField(index, "t");
 
+
 /**
  * [Pushes onto the stack the value t[key], where t is the value at the given valid index.]
  * @type {Number} index
@@ -104,12 +116,14 @@ lua.SetField(index, "t");
  */
 lua.GetField(index, "t");
 
+
 /**
  * [Get value at the given acceptable index]
  * @type {Number} index
  * @return value
  */
 var value = lua.ToValue(-1);
+
 
 /**
  * [Calls a function. Gets the function and arguments from the stack. Pushes the results onto the stack. See https://www.lua.org/manual/5.1/manual.html#pdf-pcall for more information]
@@ -126,17 +140,20 @@ lua.Call(args, results);
  */
 lua.Yield(args);
 
+
 /**
  * [Starts and resumes a coroutine in a given thread.]
  * @type {Number} args
  */
 lua.Resume(args);
 
+
 /**
  * [Pushes a value n onto the stack]
  * @type n
  */
 lua.Push(5);
+
 
 /**
  * [Pops n elements from the stack. Default value is 1]
@@ -145,17 +162,20 @@ lua.Push(5);
 lua.Pop();
 lua.Pop(n);
 
+
 /**
  * [Returns the index of the top element in the stack. Because indices start at 1, this result is equal to the number of elements in the stack (and so 0 means an empty stack)]
  * @return {Number}
  */
 var size = lua.GetTop();
 
+
 /**
  * [Accepts any acceptable index, or 0, and sets the stack top to this index. If the new top is larger than the old one, then the new elements are filled with nil. If index is 0, then all stack elements are removed]
  * @type {Number} index
  */
 lua.SetTop(index);
+
 
 /**
  * [Moves the top element into the given position (and pops it), without shifting any element (therefore replacing the value at the given position)]
