@@ -7,33 +7,33 @@
 
 ## About
 
-Warning: This package is new and not tested on every system!
+**Warning:** This package is new and not tested on every system!
 
 Using Lua5.1 C interface: https://www.lua.org/manual/5.1/manual.html with luajit compiler
 
-Based on:
+**Based on:**
  - nodelua ( https://github.com/brettlangdon/NodeLua )
  - node-luajit ( https://github.com/whtiehack/node-luajit )
 
 
-Features:
+**Features:**
 - Low-Level API
 - For now Sync only
 
-Compilation:
+**Compilation:**
 - On Windows and Mac : Luajit library already included in the package
 - On Linux: Compilation with following parameters:
-... Include directory: (find /usr/include /usr/local/include $NODELUA_INCLUDE -name lua.h | sed s/lua.h//)
-... Library directory: "/usr/local/lib"
-... Library: "/usr/local/lib/libluajit-5.1.so"
+...Include directory: (find /usr/include /usr/local/include $NODELUA_INCLUDE -name lua.h | sed s/lua.h//)..
+...Library directory: "/usr/local/lib"..
+...Library: "/usr/local/lib/libluajit-5.1.so"..
 
-Tested on:
+**Tested on:**
  - Windows (Node v6.10.2)
 
 
 ## Examples
 
-- [Simple](https://github.com/Medaeus245/node-lua/examples/simple/simple.js)
+- [Simple](https://github.com/Medaeus245/node-lua/blob/master/examples/simple/simple.js)
 
 ## API
 
