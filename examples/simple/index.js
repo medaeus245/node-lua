@@ -1,4 +1,4 @@
-const nodelua = require('node-lua');
+const nodelua = require('../../index');
 
 var lua = new nodelua.LuaState();
 
@@ -6,8 +6,12 @@ var lua = new nodelua.LuaState();
  * On enregistre une nouvelle fonction utilisable dans lua
  */
 
-lua.RegisterFunction('add', function(a, b) {
-	return a + b;
+lua.RegisterFunction('add', function() {
+	var a = lua.ToValue(1);
+	var b = lua.ToValue(2);
+	lua.Pop(2);
+	lua.Push(a + b);
+	return 1;
 });
 
 lua.DoString("print('Result in Lua: ' .. add(10, 5))");

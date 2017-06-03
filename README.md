@@ -33,7 +33,7 @@ Using Lua5.1 C interface: https://www.lua.org/manual/5.1/manual.html with luajit
 
 ## Examples
 
-- [Simple](https://github.com/Medaeus245/node-lua/blob/master/examples/simple/simple.js)
+- [Simple](https://github.com/Medaeus245/node-lua/blob/master/examples/simple/index.js)
 
 ## API
 
@@ -43,6 +43,12 @@ Using Lua5.1 C interface: https://www.lua.org/manual/5.1/manual.html with luajit
 const nodelua = require('node-lua');
 
 var lua = new nodelua.LuaState();
+
+/**
+ * [Add a path to the lua package.path variable. Set a root path to require a lua file from lua (see example)]
+ * @param  {String} path
+ */
+lua.AddPackagePath(__dirname);
 
 /**
  * [Loads and runs the given file]
@@ -63,8 +69,12 @@ lua.DoString("print('Hello world!')");
  * @param  {String} name [name of the global in lua]
  * @param  {Function} f [function to set]
  */
-lua.RegisterFunction('add', function(a, b) {
-	return a + b;
+lua.RegisterFunction('add', function() {
+	var a = lua.ToValue(1);
+	var b = lua.ToValue(2);
+	lua.Pop(2);
+	lua.Push(a + b);
+	return 1;
 });
 
 /**

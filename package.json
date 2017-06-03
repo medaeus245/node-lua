@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Lua Bindings For NodeJS",
   "author": "Medaeus245",
-  "private": true,
   "main": "index.js",
   "keywords": [
     "lua",

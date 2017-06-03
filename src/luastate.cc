@@ -1,5 +1,8 @@
 #define BUILDING_NODELUA
 
+#include <algorithm>
+#include <string>
+
 #include "luastate.h"
 #include <nan.h>
 #include <v8.h>
@@ -40,6 +43,8 @@ void LuaState::Init(v8::Local<v8::Object> exports){
 
 	Nan::SetPrototypeMethod(tpl, "LoadFile", DoFileSync);
 	Nan::SetPrototypeMethod(tpl, "LoadString", DoStringSync);
+
+	Nan::SetPrototypeMethod(tpl, "AddPackagePath", AddPackagePath);
 
 	Nan::SetPrototypeMethod(tpl, "DoFile", DoFileSync);
 	Nan::SetPrototypeMethod(tpl, "DoString", DoStringSync);
@@ -155,6 +160,42 @@ void LuaState::RegisterFunction(const Nan::FunctionCallbackInfo<v8::Value>& info
 	LuaState::setCurrentInstance(0);
 	info.GetReturnValue().Set(Nan::Undefined());
 }
+
+void LuaState::AddPackagePath(const Nan::FunctionCallbackInfo<v8::Value>& info){
+	Nan::HandleScope scope;
+
+	if (info.Length() < 1) {
+		Nan::ThrowTypeError("LuaState.DoFile Takes Only 1 Argument");
+		return;
+	}
+
+	if (!info[0]->IsString()) {
+		Nan::ThrowTypeError("LuaState.DoFile Argument 1 Must Be A String");
+		return;
+	}
+
+	std::string path = std::string(get_str(info[0]));
+	LuaState* obj = ObjectWrap::Unwrap<LuaState>(info.This());
+	LuaState::setCurrentInstance(obj);
+	lua_State *L = obj->lua_;
+
+	std::replace(path.begin(), path.end(), '\\', '/');
+	if (path.back() == '/') {
+		path.pop_back();
+	}
+	std::string code = std::string("package.path = package.path .. '") + path + "/?.lua;';";
+
+	if(luaL_dostring(L, code.c_str())) {
+		char buf[1024];
+		sprintf(buf, "LuaState.AddPackagePath: Could not add package path:\n%s\n", path.c_str());
+		Nan::ThrowError(Nan::New(buf).ToLocalChecked());
+		LuaState::setCurrentInstance(0);
+		return;
+	}
+	info.GetReturnValue().Set(Nan::Undefined());
+	LuaState::setCurrentInstance(0);
+}
+
 
 void LuaState::LoadFileSync(const Nan::FunctionCallbackInfo<v8::Value>& info){
 	Nan::HandleScope scope;

@@ -39,6 +39,7 @@ public:
 	static void CollectGarbageSync(const Nan::FunctionCallbackInfo<v8::Value>& info);
 	static void StatusSync(const Nan::FunctionCallbackInfo<v8::Value>& info);
 
+	static void AddPackagePath(const Nan::FunctionCallbackInfo<v8::Value>& info);
 
 	static void LoadFileSync(const Nan::FunctionCallbackInfo<v8::Value>& info);
 	static void LoadStringSync(const Nan::FunctionCallbackInfo<v8::Value>& info);
