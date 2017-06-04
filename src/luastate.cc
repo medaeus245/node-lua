@@ -30,7 +30,7 @@ void LuaState::setCurrentInstance(LuaState* instance) {
 	LuaState::instance = instance;
 }
 
-void LuaState::Init(v8::Local<v8::Object> exports){
+void LuaState::Init(v8::Local<v8::Object> exports) {
 
 	Nan::HandleScope scope;
 
@@ -150,7 +150,7 @@ void LuaState::RegisterFunction(const Nan::FunctionCallbackInfo<v8::Value>& info
 	lua_State* L = obj->lua_;
 
 	char* func_name = get_str(info[0]);
-	Nan::Persistent<v8::Function> func = Nan::Persistent<v8::Function>(Local<v8::Function>::Cast(info[1]));
+	Nan::Persistent<v8::Function> func(Local<v8::Function>::Cast(info[1]));
 	obj->functions[func_name].Reset(func);
 
 	lua_pushstring(L, func_name);

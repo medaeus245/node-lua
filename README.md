@@ -28,9 +28,12 @@ Using Lua5.1 C interface: https://www.lua.org/manual/5.1/manual.html with luajit
 ...Library directory: "/usr/local/lib"..
 ...Library: "/usr/local/lib/libluajit-5.1.so"..
 
+... NOTE: Don't forget to set your LD_LIBRARY_PATH to /usr/local/lib so that node-lua can find luajit,
+... or else node will tell you it can not find node-lua and throws an exception during launch time.
 
 **Tested on:**
  - Windows (Node v6.10.2)
+ - Linux (Node v4.2.6 & v.7.10.0)
 
 
 ## Examples
