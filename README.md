@@ -24,12 +24,12 @@ Using Lua5.1 C interface: https://www.lua.org/manual/5.1/manual.html with luajit
 **Compilation:**
 - On Windows and Mac : Luajit library already included in the package
 - On Linux: Compilation with following parameters:
-...Include directory: (find /usr/include /usr/local/include $NODELUA_INCLUDE -name lua.h | sed s/lua.h//)..
-...Library directory: "/usr/local/lib"..
-...Library: "/usr/local/lib/libluajit-5.1.so"..
+  - Include directory: (find /usr/include /usr/local/include $NODELUA_INCLUDE -name lua.h | sed s/lua.h//)
+  - Library directory: "/usr/local/lib"
+  - Library: "/usr/local/lib/libluajit-5.1.so"
 
-... NOTE: Don't forget to set your LD_LIBRARY_PATH to /usr/local/lib so that node-lua can find luajit,
-... or else node will tell you it can not find node-lua and throws an exception during launch time.
+NOTE: Don't forget to set your LD_LIBRARY_PATH to /usr/local/lib on Linux so that node-lua can find luajit,
+or else node will tell you it can not find node-lua and throws an exception during launch time.
 
 **Tested on:**
  - Windows (Node v6.10.2)
