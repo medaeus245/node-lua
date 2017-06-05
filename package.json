@@ -1,6 +1,6 @@
 {
   "name": "node-lua",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Lua Bindings For NodeJS",
   "author": "Medaeus245",
   "main": "index.js",

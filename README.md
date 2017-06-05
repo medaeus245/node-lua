@@ -7,7 +7,8 @@
 
 ## About
 
-**Warning:** This package is new and not tested on every system!
+**Warning:** This package is new and not yet tested on every system!
+
 
 Using Lua5.1 C interface: https://www.lua.org/manual/5.1/manual.html with luajit compiler
 
@@ -28,8 +29,7 @@ Using Lua5.1 C interface: https://www.lua.org/manual/5.1/manual.html with luajit
   - Library directory: "/usr/local/lib"
   - Library: "/usr/local/lib/libluajit-5.1.so"
 
-NOTE: Don't forget to set your LD_LIBRARY_PATH to /usr/local/lib on Linux so that node-lua can find luajit,
-or else node will tell you it can not find node-lua and throws an exception during launch time.
+NOTE (Linux only): Don't forget to set your LD_LIBRARY_PATH to /usr/local/lib so that node-lua can find luajit, or Node.JS will tell you that it could not find the module.
 
 **Tested on:**
  - Windows (Node v6.10.2)
