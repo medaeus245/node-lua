@@ -1,14 +1,15 @@
 {
   "name": "node-lua",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Lua Bindings For NodeJS",
-  "author": "Medaeus245",
+  "author": "medaeus245",
   "main": "index.js",
   "keywords": [
     "lua",
-	"lua5.1",
-	"node-lua",
-	"nodejs"
+		"lua5.1",
+		"node-lua",
+		"node-lua-binding"
+		"nodejs"
   ],
   "scripts": {
     "install": "node-gyp rebuild"
@@ -16,10 +17,10 @@
   "dependencies": {
     "nan": "^2.6.2"
   },
-  "homepage": "http://github.com/Medaeus245/node-lua",
+  "homepage": "http://github.com/medaeus245/node-lua",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Medaeus245/node-lua.git"
+    "url": "git@github.com:medaeus245/node-lua.git"
   },
   "license": "ISC",
   "gypfile": true
