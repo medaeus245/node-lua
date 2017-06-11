@@ -8,7 +8,7 @@
     "lua",
 		"lua5.1",
 		"node-lua",
-		"node-lua-binding"
+		"node-lua-binding",
 		"nodejs"
   ],
   "scripts": {
